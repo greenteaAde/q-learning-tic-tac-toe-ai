@@ -50,7 +50,7 @@ def train():
                 j += 1
                 turn = copy.copy(env.turn)
                 if (i + j) % 2 == 1:
-                    action = agent.policy(state, turn, available_actions(state))
+                    action = agent.policy(state, turn, available_actions(state), epsilon=0)
                 else:
                     action = agent_base.policy(state, turn, available_actions(state))
                 next_state, done, winner = env.step(action)
