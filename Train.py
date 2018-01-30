@@ -1,3 +1,4 @@
+import random
 import copy
 import numpy as np
 from Tictactoe_Env import tictactoe
@@ -8,9 +9,10 @@ learning_rate = 0.4
 train_episode = 500
 verify_episode = 100
 total_episode = train_episode * 100000
+epsilon_list = [0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22, 0.24]
 
 env = tictactoe()
-agent = AIagent_RL(restore=False)
+agent = AIagent_RL(restore=True)
 agent_base = AIagent_Base()
 
 
@@ -25,16 +27,18 @@ def train():
     win_rate_mean = []
 
     episode = 0
-    while True: #episode < total_episode:
+    while True:  # episode < total_episode:
+        epsilon = random.choice(epsilon_list)
         # training stage
         for _ in range(train_episode):
             episode += 1
             done = 0
             env.reset()
             state = copy.copy(env.state)
+
             while not done:
                 turn = copy.copy(env.turn)
-                action = agent.policy(state, turn, available_actions(state), epsilon=0.08)
+                action = agent.policy(state, turn, available_actions(state), epsilon=epsilon)
                 next_state, done, winner = env.step(action)
                 update(agent, state, next_state, learning_rate=learning_rate)
                 state = copy.copy(next_state)
@@ -78,8 +82,6 @@ def train():
             for x in win_rate_mean:
                 print("%.2f" % x, end=' ')
             print("]")
-            if mean > 0.75:
-                break
 
 
 if __name__ == "__main__":

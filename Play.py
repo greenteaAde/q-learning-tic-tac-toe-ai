@@ -7,6 +7,7 @@ env = tictactoe()
 agent1 = Human_agent()
 agent2 = AIagent_RL(restore=True)
 
+
 def play():
     done = 0
     env.reset()
