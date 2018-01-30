@@ -28,7 +28,9 @@ def train():
 
     episode = 0
     while True:  # episode < total_episode:
+
         epsilon = random.choice(epsilon_list)
+
         # training stage
         for _ in range(train_episode):
             episode += 1
@@ -76,11 +78,9 @@ def train():
         win_rate_list.append(win_rate)
         if episode % (train_episode * 100) == 0:
             mean = np.mean(win_rate_list)
-            win_rate_mean.append(round(mean,2))
+            win_rate_mean.append(round(mean, 2))
             win_rate_list.clear()
             print("Recent Win Rates : {}".format(win_rate_mean))
-            if mean > 0.75:
-                break
 
 
 if __name__ == "__main__":
