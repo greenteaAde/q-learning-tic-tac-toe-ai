@@ -26,6 +26,7 @@ def train():
 
     episode = 0
     while episode < total_episode:
+        # training stage
         for _ in range(train_episode):
             episode += 1
             done = 0
@@ -37,8 +38,8 @@ def train():
                 next_state, done, winner = env.step(action)
                 update(agent, state, next_state, learning_rate=learning_rate)
                 state = copy.copy(next_state)
-            # print("Episode: %d Winner : %d" % (episode, winner))
 
+        # verification stage
         win = lose = draw = 0
         for i in range(verify_episode):
             done = 0
@@ -50,6 +51,7 @@ def train():
                 j += 1
                 turn = copy.copy(env.turn)
                 if (i + j) % 2 == 1:
+                    # epsilon 0
                     action = agent.policy(state, turn, available_actions(state), epsilon=0)
                 else:
                     action = agent_base.policy(state, turn, available_actions(state))
@@ -66,6 +68,7 @@ def train():
         print("[Episode %d] Win : %d Draw : %d Lose : %d Win_rate: %.2f" % (episode, win, draw, lose, win_rate))
         agent.save()
 
+        # print status (each train_episode * 100)
         win_rate_list.append(win_rate)
         if episode % (train_episode * 100) == 0:
             mean = np.mean(win_rate_list)
