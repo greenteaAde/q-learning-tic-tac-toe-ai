@@ -1,4 +1,5 @@
 import random
+import shutil
 import itertools
 import numpy as np
 from Functions import is_finished, encode, decode
@@ -66,6 +67,7 @@ class AIagent_RL:
         return random.choice(action_list)
 
     def save(self):
+        shutil.copy2("./data/save.dat", "./data/save_backup.dat")
         with open("./data/save.dat", 'w') as f:
             for key, value in self.value.items():
                 f.write(key + ' ' + str(value) + '\n')
