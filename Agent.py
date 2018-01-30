@@ -66,13 +66,13 @@ class AIagent_RL:
         return random.choice(action_list)
 
     def save(self):
-        with open("./data/save_data.txt", 'w') as f:
+        with open("./data/save.dat", 'w') as f:
             for key, value in self.value.items():
                 f.write(key + ' ' + str(value) + '\n')
         print("saved!")
 
     def restore(self):
-        with open("./data/save_data.txt", 'r') as f:
+        with open("./data/save.dat", 'r') as f:
             for line in f:
                 tmp = line.split()
                 key = tmp[0]
