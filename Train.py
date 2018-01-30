@@ -74,16 +74,8 @@ def train():
             mean = np.mean(win_rate_list)
             win_rate_mean.append(round(mean,2))
             win_rate_list.clear()
-<<<<<<< HEAD
             print("Recent Win Rates : {}".format(win_rate_mean))
-            if mean > 80:
-=======
-            print("[ ", end='')
-            for x in win_rate_mean:
-                print("%.2f" % x, end=' ')
-            print("]")
             if mean > 0.75:
->>>>>>> cab377fc1782c0ffba2a7cbb38b61dbf79d0360f
                 break
 
 
