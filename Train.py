@@ -10,7 +10,7 @@ verify_episode = 100
 total_episode = train_episode * 100000
 
 env = tictactoe()
-agent = AIagent_RL(restore=True)
+agent = AIagent_RL(restore=False)
 agent_base = AIagent_Base()
 
 
@@ -25,7 +25,7 @@ def train():
     win_rate_mean = []
 
     episode = 0
-    while episode < total_episode:
+    while True: #episode < total_episode:
         # training stage
         for _ in range(train_episode):
             episode += 1
@@ -34,7 +34,7 @@ def train():
             state = copy.copy(env.state)
             while not done:
                 turn = copy.copy(env.turn)
-                action = agent.policy(state, turn, available_actions(state))
+                action = agent.policy(state, turn, available_actions(state), epsilon=0.08)
                 next_state, done, winner = env.step(action)
                 update(agent, state, next_state, learning_rate=learning_rate)
                 state = copy.copy(next_state)
@@ -78,7 +78,7 @@ def train():
             for x in win_rate_mean:
                 print("%.2f" % x, end=' ')
             print("]")
-            if mean > 80:
+            if mean > 0.75:
                 break
 
 
