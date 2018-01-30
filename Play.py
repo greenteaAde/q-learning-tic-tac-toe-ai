@@ -4,8 +4,8 @@ from Agent import AIagent_RL, AIagent_Base, Human_agent
 from Functions import available_actions
 
 env = tictactoe()
-agent1 = AIagent_RL()
-agent2 = Human_agent()
+agent1 = Human_agent()
+agent2 = AIagent_RL(restore=True)
 
 
 def play():
