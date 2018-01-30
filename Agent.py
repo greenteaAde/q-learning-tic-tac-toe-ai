@@ -5,7 +5,7 @@ from Functions import is_finished, encode, decode
 
 
 class AIagent_RL:
-    def __init__(self, restore=0):
+    def __init__(self, restore=False):
         # self.value key : '012301230', value : 1
         self.value = dict()
         if not restore:
@@ -76,7 +76,7 @@ class AIagent_RL:
             for line in f:
                 tmp = line.split()
                 key = tmp[0]
-                value = int(tmp[1])
+                value = float(tmp[1])
                 self.value[key] = value
         print("restored!")
 
