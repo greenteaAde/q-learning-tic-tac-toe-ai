@@ -76,12 +76,11 @@ def train():
         win_rate_list.append(win_rate)
         if episode % (train_episode * 100) == 0:
             mean = np.mean(win_rate_list)
-            win_rate_mean.append(mean)
+            win_rate_mean.append(round(mean,2))
             win_rate_list.clear()
-            print("[ ", end='')
-            for x in win_rate_mean:
-                print("%.2f" % x, end=' ')
-            print("]")
+            print("Recent Win Rates : {}".format(win_rate_mean))
+            if mean > 0.75:
+                break
 
 
 if __name__ == "__main__":
