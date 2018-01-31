@@ -103,12 +103,9 @@ def train():
         win_rate_list.append(win_rate)
         if episode % ((train_episode1 + train_episode2) * 100) == 0:
             mean = np.mean(win_rate_list)
-            win_rate_mean.append(mean)
+            win_rate_mean.append(np.round(mean, 2))
             win_rate_list.clear()
-            print("Recent Win Rates : [", end=' ')
-            for x in win_rate_mean:
-                print("%.2f" % x, end=' ')
-            print(']')
+            print("Recent Win Rates : " + str(win_rate_mean))
 
 
 if __name__ == "__main__":
