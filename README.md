@@ -33,7 +33,7 @@ V(s) := V(s) + learning_rate * (V(s') - V(s))
 2. epsilon : 0.08
 ```
 
-##Reference
+## Reference
 
 * Richard S. Sutton and Andrew G. Barto. (2018). Reinforcement Learning:An Introduction. 
 The MIT Press Cambridge, Massachusetts London, England
