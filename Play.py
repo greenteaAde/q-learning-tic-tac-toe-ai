@@ -29,7 +29,10 @@ def play():
         else:
             action = agent2.policy(state, turn, available_actions(state), epsilon=0)
         next_state, done, winner = env.step(action)
+
+        # update AI agent
         update(agent2, state, next_state)
+
         state = copy.copy(next_state)
         env.render()
 
@@ -37,7 +40,10 @@ def play():
         print("Draw!")
     else:
         print("Winner is agent %d!" % winner)
+
+    # save data
     agent2.save()
+
 
 if __name__ == "__main__":
     play()

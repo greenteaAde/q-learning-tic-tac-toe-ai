@@ -68,7 +68,7 @@ def train():
                 state = copy.copy(next_state)
 
         # verification stage
-        win = lose  = draw = 0
+        win = lose = draw = 0
         for i in range(verify_episode):
             done = 0
             env.reset()
@@ -96,7 +96,7 @@ def train():
         print("[Episode %d] Win : %d Draw : %d Lose : %d Win_rate: %.2f" % (episode, win, draw, lose, win_rate))
         agent.save()
 
-        if win_rate > 0.95:
+        if win_rate > 0.97:
             break
 
         # print status (each train_episode * 100)
