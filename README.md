@@ -31,10 +31,10 @@ V(s) := V(s) + learning_rate * (V(s') - V(s))
 
 ```
 1. learning rate : 0.4
-2. epsilon : 0.08
+2. epsilon (egreedy method) : 0.08
 ```
 
 ## Reference
 
-* Richard S. Sutton and Andrew G. Barto. (2018). Reinforcement Learning:An Introduction. 
+* Richard S. Sutton and Andrew G. Barto. (2018). Reinforcement Learning : An Introduction. 
 The MIT Press Cambridge, Massachusetts London, England
