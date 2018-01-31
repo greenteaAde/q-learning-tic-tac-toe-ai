@@ -68,7 +68,7 @@ def train():
                 state = copy.copy(next_state)
 
         # verification stage
-        win = lose = draw = 0
+        win = lose  = draw = 0
         for i in range(verify_episode):
             done = 0
             env.reset()
@@ -105,7 +105,10 @@ def train():
             mean = np.mean(win_rate_list)
             win_rate_mean.append(np.round(mean, 2))
             win_rate_list.clear()
-            print("Recent Win Rates : " + str(win_rate_mean))
+            print("[ ", end='')
+            for x in win_rate_mean:
+                print("%.2f" % x, end=' ')
+            print("]")
 
 
 if __name__ == "__main__":
