@@ -74,7 +74,7 @@ class AIagent_RL:
         print("saved!")
 
     def restore(self):
-        with open("./data/save_bst.dat", 'r') as f:
+        with open("./data/save.dat", 'r') as f:
             for line in f:
                 tmp = line.split()
                 key = tmp[0]
