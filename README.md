@@ -2,9 +2,10 @@ RL-based Tictactoe AI
 =====================
 ## Agents
 
-* agent_RL : 강화학습을 진행할 에이전트
+* agent_RL : 강화학습을 진행 할 에이전트
 * agent_Base : 랜덤/이기는 수를 두는 비교용 에이전트
-* agent_Human : input을 받아서, 수를 놓는 에이전트
+* agent_Human : input을 받아서 수를 놓는 에이전트
+* policy(state) : state를 받아서 정책을 반환합니다.
 
 ## Environment
 
@@ -17,7 +18,7 @@ RL-based Tictactoe AI
 
 * Table을 이용한 Temporal-difference learning method를 사용하였습니다.
 * 자가대전 350 Episode, 베이스대전 150 Episode로 Training합니다.
-* 500 Episode마다 베이스와 100 Episode를 테스트합니다.
+* 500 Episode마다 agent_base와 100 Episode를 테스트합니다.
 * 50000 Episode마다 평균승률 출력합니다.
 
 * 학습 식
