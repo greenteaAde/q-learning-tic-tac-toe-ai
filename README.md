@@ -16,7 +16,7 @@ Tictactoe AI using Q-learning Method
 
 ## Learning Algorithm
 
-* Table을 이용한 Q-learning (off-policy TD control)를 사용하였습니다.
+* Table을 이용한 Q-learning(off-policy TD control)를 사용하였습니다.
 * 자가대전 350 Episode, 베이스대전 150 Episode로 나눠서 Training합니다.
 * 500 Episode마다 agent_base와 100 Episode씩 테스트합니다.
 * 50000 Episode마다 평균승률 출력합니다.
@@ -34,6 +34,11 @@ Q(S,A) = Q(S,A) + learning_rate * [R + discount_factor * Max(Q(S',a)) - Q(S,A)]
 2. discount_factor : 0.9
 3. epsilon (egreedy method) : 0.08
 ```
+
+## Conclusion
+
+* agent_Base와의 대전에서 승률이 100%에 도달했습니다.
+* 사람과 비슷한 수준(unbeatable)까지 학습시키는데 성공했습니다.
 
 ## Reference
 
