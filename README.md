@@ -2,13 +2,13 @@ Tictactoe AI using Q-learning Method
 =====================
 ## ½ÇÇà
 
-# Training
+### Training
 
 ```
 $ python Train.py
 ```
 
-# Play games
+### Play games
 
 ```
 $ python Play.py
