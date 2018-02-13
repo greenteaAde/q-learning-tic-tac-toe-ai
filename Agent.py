@@ -7,7 +7,6 @@ from Functions import is_finished, encode, available_actions
 
 class AIagent_RL:
     def __init__(self, restore=False):
-        # self.value key : '012301230', value : 1
         self.action_value = dict()
         if not restore:
             self.init_value()
@@ -15,7 +14,6 @@ class AIagent_RL:
             self.restore()
 
     def init_value(self):
-
         state_list = itertools.product([0, 1, 2], repeat=9)
 
         for state in state_list:

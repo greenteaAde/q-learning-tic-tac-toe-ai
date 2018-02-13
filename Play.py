@@ -3,13 +3,6 @@ from Tictactoe_Env import tictactoe
 from Agent import AIagent_RL, AIagent_Base, Human_agent
 from Functions import available_actions, encode
 
-
-def update(agent, state, next_state, learning_rate=0.4):
-    state = encode(state)
-    next_state = encode(next_state)
-    agent.value[state] = agent.value[state] + learning_rate * (agent.value[next_state] - agent.value[state])
-
-
 env = tictactoe()
 agent1 = AIagent_RL(restore=True)
 agent2 = AIagent_RL(restore=True)
@@ -30,7 +23,6 @@ def play():
         else:
             action = agent2.policy(state, turn, epsilon=0)
         next_state, done, reward, winner = env.step(action)
-#        update(agent2, state, next_state)
         state = copy.copy(next_state)
         env.render()
 
@@ -38,7 +30,7 @@ def play():
         print("Draw!")
     else:
         print("Winner is agent %d!" % winner)
-#    agent2.save()
+
 
 if __name__ == "__main__":
     play()

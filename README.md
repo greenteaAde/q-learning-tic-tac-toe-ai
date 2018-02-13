@@ -1,5 +1,19 @@
 Tictactoe AI using Q-learning Method
 =====================
+## 실행
+
+#Training
+
+```
+$ python Train.py
+```
+
+#Play games
+
+```
+$ python Play.py
+```
+
 ## Agents
 
 * agent_RL : 강화학습을 진행 할 에이전트
