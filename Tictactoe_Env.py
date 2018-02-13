@@ -11,7 +11,12 @@ class tictactoe():
         self.state[action] = self.turn
         self.turn = self.turn % 2 + 1
         done, winner = is_finished(self.state)
-        return self.state, done, winner
+        reward = 0
+        if done and winner == 1: reward = 1
+        if done and winner == 2: reward = -1
+        if done and winner == 0: reward = 0
+
+        return self.state, done, reward, winner
 
     def reset(self):
         self.state = [0, 0, 0, 0, 0, 0, 0, 0, 0]

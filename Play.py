@@ -11,12 +11,13 @@ def update(agent, state, next_state, learning_rate=0.4):
 
 
 env = tictactoe()
-agent1 = Human_agent()
+agent1 = AIagent_RL(restore=True)
 agent2 = AIagent_RL(restore=True)
 
 
 def play():
     done = 0
+    winner = 0
     env.reset()
     state = copy.copy(env.state)
 
@@ -25,14 +26,11 @@ def play():
         i += 1
         turn = copy.copy(env.turn)
         if i % 2 == 1:
-            action = agent1.policy(state, turn, available_actions(state), epsilon=0)
+            action = agent1.policy(state, turn, epsilon=0)
         else:
-            action = agent2.policy(state, turn, available_actions(state), epsilon=0)
-        next_state, done, winner = env.step(action)
-
-        # update AI agent
-        update(agent2, state, next_state)
-
+            action = agent2.policy(state, turn, epsilon=0)
+        next_state, done, reward, winner = env.step(action)
+#        update(agent2, state, next_state)
         state = copy.copy(next_state)
         env.render()
 
@@ -40,10 +38,7 @@ def play():
         print("Draw!")
     else:
         print("Winner is agent %d!" % winner)
-
-    # save data
-    agent2.save()
-
+#    agent2.save()
 
 if __name__ == "__main__":
     play()

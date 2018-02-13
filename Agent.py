@@ -2,13 +2,13 @@ import random
 import shutil
 import itertools
 import numpy as np
-from Functions import is_finished, encode, decode
+from Functions import is_finished, encode, available_actions
 
 
 class AIagent_RL:
     def __init__(self, restore=False):
         # self.value key : '012301230', value : 1
-        self.value = dict()
+        self.action_value = dict()
         if not restore:
             self.init_value()
         else:
@@ -20,56 +20,48 @@ class AIagent_RL:
 
         for state in state_list:
             state = list(state)
-            done, winner = is_finished(state)
-            encoded = encode(state)
-            if not done:
-                self.value[encoded] = 0
-            elif winner == 1:
-                self.value[encoded] = 1
-            elif winner == 2:
-                self.value[encoded] = -1
-            else:
-                self.value[encoded] = 0
+            encoded_state = encode(state)
+            available = available_actions(state)
 
-    def policy(self, state, turn, available, epsilon=0.08):
+            for action in available:
+                encoded = encoded_state + str(action)
+                self.action_value[encoded] = 0
+
+    def policy(self, state, turn, epsilon=0.08):
         maxvalue = -99999
         minvalue = 99999
+        encoded_state = encode(state)
+        available = available_actions(state)
         action_list = []
 
         if np.random.rand(1) < epsilon:
             action_list = available
         else:
             if turn == 1:
-                for i in available:
-                    state[i] = turn
-                    state = encode(state)
-                    if self.value[state] > maxvalue:
+                for action in available:
+                    encoded = encoded_state + str(action)
+                    if self.action_value[encoded] > maxvalue:
                         action_list = []
-                        maxvalue = self.value[state]
-                        action_list.append(i)
-                    elif self.value[state] == maxvalue:
-                        action_list.append(i)
-                    state = decode(state)
-                    state[i] = 0
+                        maxvalue = self.action_value[encoded]
+                        action_list.append(action)
+                    elif self.action_value[encoded] == maxvalue:
+                        action_list.append(action)
             else:
-                for i in available:
-                    state[i] = turn
-                    state = encode(state)
-                    if self.value[state] < minvalue:
+                for action in available:
+                    encoded = encoded_state + str(action)
+                    if self.action_value[encoded] < minvalue:
                         action_list = []
-                        minvalue = self.value[state]
-                        action_list.append(i)
-                    elif self.value[state] == minvalue:
-                        action_list.append(i)
-                    state = decode(state)
-                    state[i] = 0
+                        minvalue = self.action_value[encoded]
+                        action_list.append(action)
+                    elif self.action_value[encoded] == minvalue:
+                        action_list.append(action)
 
         return random.choice(action_list)
 
     def save(self):
         shutil.copy2("./data/save.dat", "./data/save_backup.dat")
         with open("./data/save.dat", 'w') as f:
-            for key, value in self.value.items():
+            for key, value in self.action_value.items():
                 f.write(key + ' ' + str(value) + '\n')
         print("saved!")
 
@@ -79,12 +71,13 @@ class AIagent_RL:
                 tmp = line.split()
                 key = tmp[0]
                 value = float(tmp[1])
-                self.value[key] = value
+                self.action_value[key] = value
         print("restored!")
 
 
 class AIagent_Base:
-    def policy(self, state, turn, available, epsilon=0):
+    def policy(self, state, turn, epsilon=0):
+        available = available_actions(state)
         action_list = []
 
         for i in available:
@@ -100,7 +93,9 @@ class AIagent_Base:
 
 
 class Human_agent:
-    def policy(self, state, turn, available, epsilon=0):
+    def policy(self, state, turn, epsilon=0):
+        available = available_actions(state)
+
         while True:
             ret = int(input("input [0 1 2 / 3 4 5 / 6 7 8] : "))
             if ret in available:

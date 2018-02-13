@@ -1,11 +1,11 @@
-RL-based Tictactoe AI
+Tictactoe AI using Q-learning Method
 =====================
 ## Agents
 
 * agent_RL : 강화학습을 진행 할 에이전트
 * agent_Base : 랜덤/이기는 수를 두는 비교용 에이전트
 * agent_Human : input을 받아서 수를 놓는 에이전트
-* policy(state) : state를 받아서 정책을 반환합니다.
+* policy(state) : state를 받아서 e-greedy 정책을 반환합니다.
 
 ## Environment
 
@@ -16,22 +16,23 @@ RL-based Tictactoe AI
 
 ## Learning Algorithm
 
-* Table을 이용한 Temporal-difference learning method를 사용하였습니다.
-* 자가대전 350 Episode, 베이스대전 150 Episode로 Training합니다.
-* 500 Episode마다 agent_base와 100 Episode를 테스트합니다.
+* Table을 이용한 Q-learning (off-policy TD control)를 사용하였습니다.
+* 자가대전 350 Episode, 베이스대전 150 Episode로 나눠서 Training합니다.
+* 500 Episode마다 agent_base와 100 Episode씩 테스트합니다.
 * 50000 Episode마다 평균승률 출력합니다.
 
 * 학습 식
 
 ```
-V(s) := V(s) + learning_rate * (V(s') - V(s))
+Q(S,A) = Q(S,A) + learning_rate * [R + discount_factor * Max(Q(S',a)) - Q(S,A)]
 ```
 
 * Hyperparameter
 
 ```
 1. learning rate : 0.4
-2. epsilon (egreedy method) : 0.08
+2. discount_factor : 0.9
+3. epsilon (egreedy method) : 0.08
 ```
 
 ## Reference
