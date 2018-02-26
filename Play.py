@@ -1,7 +1,6 @@
 import copy
 from Tictactoe_Env import tictactoe
 from Agent import AIagent_RL, AIagent_Base, Human_agent
-from Functions import available_actions, encode
 
 env = tictactoe()
 agent1 = AIagent_RL(restore=True)
