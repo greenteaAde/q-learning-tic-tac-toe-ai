@@ -1,7 +1,6 @@
 import copy
 from Tictactoe_Env import tictactoe
 from Agent import AIagent_RL, AIagent_Base
-from Functions import encode
 
 learning_rate = 0.4
 discount_factor = 0.9
@@ -15,15 +14,13 @@ agent_base = AIagent_Base()
 
 
 def update(agent, state, action, reward, next_state, next_turn, done, learning_rate=0.4, discount_factor=0.9):
-    encoded = encode(state) + str(action)
-    value = agent.action_value[encoded]
+    value = agent.q(state, action)
     if not done:
         next_action = agent.policy(next_state, next_turn, epsilon=0)
-        next_encoded = encode(next_state) + str(next_action)
-        next_value = agent.action_value[next_encoded]
-        agent.action_value[encoded] = value + learning_rate * (reward + discount_factor * next_value - value)
+        next_value = agent.q(next_state, next_action)
+        agent.assign_q(state, action, value + learning_rate * (reward + discount_factor * next_value - value))
     else:
-        agent.action_value[encoded] = value + learning_rate * (reward - value)
+        agent.assign_q(state, action, value + learning_rate * (reward - value))
 
 
 def train():

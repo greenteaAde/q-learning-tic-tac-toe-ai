@@ -3,7 +3,7 @@ from Tictactoe_Env import tictactoe
 from Agent import AIagent_RL, AIagent_Base, Human_agent
 
 env = tictactoe()
-agent1 = AIagent_RL(restore=True)
+agent1 = Human_agent()
 agent2 = AIagent_RL(restore=True)
 
 

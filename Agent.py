@@ -56,6 +56,14 @@ class AIagent_RL:
 
         return random.choice(action_list)
 
+    def q(self, state, action):
+        encoded = encode(state) + str(action)
+        return self.action_value[encoded]
+
+    def assign_q(self, state, action, x):
+        encoded = encode(state) + str(action)
+        self.action_value[encoded] = x
+
     def save(self):
         shutil.copy2("./data/save.dat", "./data/save_backup.dat")
         with open("./data/save.dat", 'w') as f:
