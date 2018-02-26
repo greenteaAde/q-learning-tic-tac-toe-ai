@@ -1,13 +1,12 @@
 import copy
 from Tictactoe_Env import tictactoe
 from Agent import AIagent_RL, AIagent_Base
-from Functions import encode, available_actions
+from Functions import encode
 
 learning_rate = 0.4
 discount_factor = 0.9
 epsilon = 0.08
-train_episode1 = 350
-train_episode2 = 150
+train_episode = 500
 verify_episode = 100
 
 env = tictactoe()
@@ -31,8 +30,8 @@ def train():
     episode = 0
     while True:  # episode < total_episode:
 
-        # training stage1 (self-training)
-        for _ in range(train_episode1):
+        # training stage (self-training)
+        for _ in range(train_episode):
             episode += 1
             done = 0
             env.reset()
@@ -44,27 +43,6 @@ def train():
                 next_state, done, reward, winner = env.step(action)
                 update(agent, state, action, reward, next_state, turn % 2 + 1, done,
                        learning_rate=learning_rate, discount_factor=discount_factor)
-                state = copy.copy(next_state)
-
-        # training stage2 (vs agent_base)
-        for i in range(train_episode2):
-            episode += 1
-            done = 0
-            env.reset()
-            state = copy.copy(env.state)
-
-            j = 0
-            while not done:
-                j += 1
-                turn = copy.copy(env.turn)
-                if (i + j) % 2 == 1:
-                    action = agent.policy(state, turn, epsilon=epsilon)
-                else:
-                    action = agent_base.policy(state, turn, available_actions(state))
-                next_state, done, reward, winner = env.step(action)
-                if done:
-                    update(agent, state, action, reward, next_state, turn % 2 + 1, done,
-                           learning_rate=learning_rate, discount_factor=discount_factor)
                 state = copy.copy(next_state)
 
         # verification stage
