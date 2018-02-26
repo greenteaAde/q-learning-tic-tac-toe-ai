@@ -1,7 +1,7 @@
 Tictactoe AI using Q-learning Method
 =====================
 
-## RUN
+## Run
 
 ### Training
 
@@ -33,7 +33,7 @@ $ python Play.py
 
 * Table을 이용한 Q-learning(off-policy TD control)을 사용하였습니다.
 * 500 Episode의 자가대전으로 Training합니다.
-* 500 Episode마다 agent_base와 100 Episode씩 테스트합니다.
+* 500 Episode마다 agent_Base와 100 Episode씩 테스트합니다.
 
 * 학습 식
 
