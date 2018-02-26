@@ -1,7 +1,7 @@
 Tictactoe AI using Q-learning Method
 =====================
 
-## RUN
+## Run
 
 ### Training
 
