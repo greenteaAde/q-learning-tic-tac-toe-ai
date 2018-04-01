@@ -51,6 +51,8 @@ Q(S,A) = Q(S,A) + learning_rate * [R + discount_factor * Max(Q(S',a)) - Q(S,A)]
 
 ## Conclusion
 
+![average_q_value](./images/average_q_value.png)
+![win_rate](./images/win_rate.png)
 * agent_Base와의 대전에서 승률이 100%에 도달했습니다.
 * 사람과 비슷한 수준(unbeatable)까지 학습이 되었습니다.
 
