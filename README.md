@@ -17,25 +17,25 @@ $ python Play.py
 
 ## Agents
 
-* agent_RL : °­È­ÇĞ½ÀÀ» ÁøÇà ÇÒ ¿¡ÀÌÀüÆ®
-* agent_Base : ·£´ı/ÀÌ±â´Â ¼ö¸¦ µÎ´Â ºñ±³¿ë ¿¡ÀÌÀüÆ®
-* agent_Human : inputÀ» ¹Ş¾Æ¼­ ¼ö¸¦ ³õ´Â ¿¡ÀÌÀüÆ®
-* policy(state) : state¸¦ ¹Ş¾Æ¼­ e-greedy Á¤Ã¥À» ¹İÈ¯ÇÕ´Ï´Ù.
+* agent_RL : ê°•í™”í•™ìŠµì„ ì§„í–‰ í•  ì—ì´ì „íŠ¸
+* agent_Base : ëœë¤/ì´ê¸°ëŠ” ìˆ˜ë¥¼ ë‘ëŠ” ë²¤ì¹˜ë§ˆí‚¹ìš© ì—ì´ì „íŠ¸
+* agent_Human : inputì„ ë°›ì•„ì„œ ìˆ˜ë¥¼ ë†“ëŠ” ì—ì´ì „íŠ¸
+* policy(state) : stateë¥¼ ë°›ì•„ì„œ e-greedy ì •ì±…ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
 
 ## Environment
 
-* Tictactoe °ÔÀÓ È¯°æÀÔ´Ï´Ù.
-* step(action) : actionÀ» ¹Ş¾Æ¼­ ½ÇÇàÇÏ°í observationÀ» ¹İÈ¯ÇÕ´Ï´Ù.
-* render() : ÇöÀç »óÅÂ¸¦ È­¸é¿¡ Ãâ·ÂÇÕ´Ï´Ù.
-* init()/reset() : È¯°æÀ» ÃÊ±âÈ­ÇÕ´Ï´Ù.
+* Tictactoe ê²Œì„ í™˜ê²½ì…ë‹ˆë‹¤.
+* step(action) : actionì„ ë°›ì•„ì„œ ì‹¤í–‰í•˜ê³  observationì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+* render() : í˜„ì¬ ìƒíƒœë¥¼ í™”ë©´ì— ì¶œë ¥í•©ë‹ˆë‹¤.
+* init()/reset() : í™˜ê²½ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 
 ## Learning Algorithm
 
-* TableÀ» ÀÌ¿ëÇÑ Q-learning(off-policy TD control)À» »ç¿ëÇÏ¿´½À´Ï´Ù.
-* 500 EpisodeÀÇ ÀÚ°¡´ëÀüÀ¸·Î TrainingÇÕ´Ï´Ù.
-* 500 Episode¸¶´Ù agent_Base¿Í 100 Episode¾¿ Å×½ºÆ®ÇÕ´Ï´Ù.
+* Tableì„ ì´ìš©í•œ Q-learning(off-policy TD control)ì„ ì‚¬ìš©í•˜ì˜€ìŠµë‹ˆë‹¤.
+* 500 Episodeì˜ ìê°€ëŒ€ì „ìœ¼ë¡œ Trainingí•©ë‹ˆë‹¤.
+* 500 Episodeë§ˆë‹¤ agent_Baseì™€ 100 Episodeì”© í…ŒìŠ¤íŠ¸í•©ë‹ˆë‹¤.
 
-* ÇĞ½À ½Ä
+* í•™ìŠµ ì‹
 
 ```
 Q(S,A) = Q(S,A) + learning_rate * [R + discount_factor * Max(Q(S',a)) - Q(S,A)]
@@ -53,8 +53,9 @@ Q(S,A) = Q(S,A) + learning_rate * [R + discount_factor * Max(Q(S',a)) - Q(S,A)]
 
 ![average_q_value](./images/average_q_value.png)
 ![win_rate](./images/win_rate.png)
-* agent_Base¿ÍÀÇ ´ëÀü¿¡¼­ ½Â·üÀÌ 100%¿¡ µµ´ŞÇß½À´Ï´Ù.
-* »ç¶÷°ú ºñ½ÁÇÑ ¼öÁØ(unbeatable)±îÁö ÇĞ½ÀÀÌ µÇ¾ú½À´Ï´Ù.
+* Q-value(action-state-value)ê°€ ìˆ˜ë ´í•˜ëŠ” ê²ƒì„ í™•ì¸í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+* agent_Baseì™€ì˜ ëŒ€ì „ì—ì„œ ìŠ¹ë¥ ì´ 100%ì— ë„ë‹¬í–ˆìŠµë‹ˆë‹¤.
+* ì‚¬ëŒê³¼ ë¹„ìŠ·í•œ ìˆ˜ì¤€(unbeatable)ê¹Œì§€ í•™ìŠµì´ ë˜ì—ˆìŠµë‹ˆë‹¤.
 
 ## Reference
 
