@@ -30,8 +30,8 @@ def update(agent, state, action, reward, next_state, next_turn, done, learning_r
 
 def train():
     episode = 0
-    avg_q = 0.0
     while True:  # episode < total_episode:
+        avg_q = 0.0
 
         # training stage (self-training)
         for _ in range(train_episode):
@@ -50,9 +50,8 @@ def train():
 
         # verification stage
         winner = win = lose = draw = 0
-        stage = 0
+        turn_count = 0
         for i in range(verify_episode):
-            stage += 1
             done = 0
             env.reset()
             state = copy.copy(env.state)
@@ -64,6 +63,7 @@ def train():
                 if (i + j) % 2 == 1:
                     action = agent.policy(state, turn, epsilon=0)
                     avg_q += agent.q(state, action)
+                    turn_count += 1
                 else:
                     action = agent_base.policy(state, turn, epsilon=0)
                 next_state, done, reward, winner = env.step(action)
@@ -76,7 +76,7 @@ def train():
             else:
                 lose += 1
         win_rate = (win + draw) / verify_episode
-        avg_q /= stage
+        avg_q /= turn_count
         print("[Episode %d] Win : %d Draw : %d Lose : %d Win_rate: %.2f" % (episode, win, draw, lose, win_rate))
 
         agent.save()
