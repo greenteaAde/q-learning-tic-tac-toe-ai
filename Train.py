@@ -62,7 +62,7 @@ def train():
                 turn = copy.copy(env.turn)
                 if (i + j) % 2 == 1:
                     action = agent.policy(state, turn, epsilon=0)
-                    avg_q += agent.q(state, action)
+                    avg_q += agent.q(state, action) * ((-1) ** (turn + 1))
                     turn_count += 1
                 else:
                     action = agent_base.policy(state, turn, epsilon=0)
