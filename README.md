@@ -3,7 +3,7 @@ Tictactoe AI using Q-learning Method
 
 ## Run
 
-### Training
+### Train
 
 ```
 $ python Train.py
